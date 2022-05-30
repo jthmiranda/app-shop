@@ -21,3 +21,10 @@ Route::get('/', 'App\Http\Controllers\TestController@welcome');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// rutas para Productos
+Route::get('/admin/products', 'App\Http\Controllers\ProductController@index');
+Route::get('/admin/products/create', 'App\Http\Controllers\ProductController@create');
+Route::post('/admin/products', 'App\Http\Controllers\ProductController@store');
+Route::get('/admin/products/{id}/edit', 'App\Http\Controllers\ProductController@edit');
+Route::post('/admin/products/{id}/edit', 'App\Http\Controllers\ProductController@update');
