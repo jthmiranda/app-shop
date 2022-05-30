@@ -15,6 +15,16 @@
             <div class="section">
                 <h2 class="title text-center">Regristrar nuevo producto</h2>
 
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form method="POST" action="{{ url('/admin/products') }}">
                     @csrf
 
@@ -22,14 +32,14 @@
                         <div class="col-sm-6">
                             <div class="form-group label-floating">
                                 <label class="control-label">Nombre del producto</label>
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group label-floating">
                                 <label class="control-label">Precio del producto</label>
-                                <input type="number" class="form-control" name="price">
+                                <input type="number" class="form-control" name="price" value="{{ old('price') }}">
                             </div>
                         </div>
 
@@ -37,14 +47,15 @@
 
                     <div class="form-group label-floating">
                         <label class="control-label">Descripción corta</label>
-                        <input type="text" class="form-control" name="description">
+                        <input type="text" class="form-control" name="description" value="{{ old('description') }}">
                     </div>
 
 
                     <textarea name="long_description" class="form-control" placeholder="Here can be your nice text"
-                              rows="5"></textarea>
+                              rows="5">{{ old('long_description') }}</textarea>
 
                     <button type="submit" class="btn btn-primary">Registrar producto</button>
+                    <a href="{{ url('/admin/products') }}" class="btn btn-default">Cancelar</a>
                 </form>
             </div>
 
