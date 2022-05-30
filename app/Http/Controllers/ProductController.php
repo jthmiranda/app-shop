@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -17,6 +18,7 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
+
         // funcion para persistir datos en mysql
         //dd($request->all());
         $product = new Product();
@@ -47,5 +49,13 @@ class ProductController extends Controller
         $product->save();
 
         return redirect('/admin/products');
+    }
+
+    public function destroy($id) {
+        ProductImage::where('product_id', $id)->delete();
+        $product = Product::find($id);
+        $product->delete();
+
+        return back();
     }
 }

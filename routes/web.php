@@ -28,3 +28,4 @@ Route::get('/admin/products/create', 'App\Http\Controllers\ProductController@cre
 Route::post('/admin/products', 'App\Http\Controllers\ProductController@store');
 Route::get('/admin/products/{id}/edit', 'App\Http\Controllers\ProductController@edit');
 Route::post('/admin/products/{id}/edit', 'App\Http\Controllers\ProductController@update');
+Route::delete('/admin/products/{id}', 'App\Http\Controllers\ProductController@destroy');
