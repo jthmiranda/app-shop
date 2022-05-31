@@ -22,10 +22,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// rutas para Productos
-Route::get('/admin/products', 'App\Http\Controllers\ProductController@index');
-Route::get('/admin/products/create', 'App\Http\Controllers\ProductController@create');
-Route::post('/admin/products', 'App\Http\Controllers\ProductController@store');
-Route::get('/admin/products/{id}/edit', 'App\Http\Controllers\ProductController@edit');
-Route::post('/admin/products/{id}/edit', 'App\Http\Controllers\ProductController@update');
-Route::delete('/admin/products/{id}', 'App\Http\Controllers\ProductController@destroy');
+Route::group(['prefix' => 'admin','middleware' => ['auth', 'admin']], function () {
+    // rutas para Productos
+    Route::get('/products', 'App\Http\Controllers\ProductController@index');
+    Route::get('/products/create', 'App\Http\Controllers\ProductController@create');
+    Route::post('/products', 'App\Http\Controllers\ProductController@store');
+    Route::get('/products/{id}/edit', 'App\Http\Controllers\ProductController@edit');
+    Route::post('/products/{id}/edit', 'App\Http\Controllers\ProductController@update');
+    Route::delete('/products/{id}', 'App\Http\Controllers\ProductController@destroy');
+});
+
+
