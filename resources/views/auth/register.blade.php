@@ -11,17 +11,6 @@
                             @csrf
                             <div class="header header-primary text-center">
                                 <h4>Registro</h4>
-{{--                                <div class="social-line">--}}
-{{--                                    <a href="#pablo" class="btn btn-simple btn-just-icon">--}}
-{{--                                        <i class="fa fa-facebook-square"></i>--}}
-{{--                                    </a>--}}
-{{--                                    <a href="#pablo" class="btn btn-simple btn-just-icon">--}}
-{{--                                        <i class="fa fa-twitter"></i>--}}
-{{--                                    </a>--}}
-{{--                                    <a href="#pablo" class="btn btn-simple btn-just-icon">--}}
-{{--                                        <i class="fa fa-google-plus"></i>--}}
-{{--                                    </a>--}}
-{{--                                </div>--}}
                             </div>
                             <p class="text-divider">Completa tus datos</p>
                             <div class="content">
@@ -64,6 +53,15 @@
                             {{--                                {{ __('Forgot Your Password?') }}--}}
                             {{--                            </a>--}}
 
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>
