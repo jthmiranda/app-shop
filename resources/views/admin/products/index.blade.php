@@ -33,9 +33,9 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td class="text-center">{{ $product->id }}</td>
-                                    <td>{{ $product->name }}</td>
-                                    <td class="col-md-4">{{ $product->description }}</td>
-                                    <td>{{ $product->category ? $product->category->name : 'General' }}</td>
+                                    <td class="col-md-2 text-center">{{ $product->name }}</td>
+                                    <td class="col-md-5 text-center">{{ $product->description }}</td>
+                                    <td class="text-center">{{ $product->category ? $product->category->name : 'General' }}</td>
                                     <td class="text-right">&euro; {{ $product->price }}</td>
                                     <td class="td-actions text-right">
                                         <form method="POST"
@@ -51,6 +51,10 @@
                                                rel="tooltip" title="Editar producto"
                                                class="btn btn-success btn-simple btn-xs">
                                                 <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="{{ url('/admin/products/'.$product->id.'/images') }}" type="button" rel="tooltip" title="Imagenes del producto"
+                                               class="btn btn-warning btn-simple btn-xs">
+                                                <i class="fa fa-image"></i>
                                             </a>
                                             <button type="submit" rel="tooltip" title="Eliminar"
                                                     class="btn btn-danger btn-simple btn-xs">
