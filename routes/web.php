@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth', 'admin']], function (
     Route::get('/products/{id}/images', 'App\Http\Controllers\ImageController@index'); //listado
     Route::post('/products/{id}/images', 'App\Http\Controllers\ImageController@store'); // registrar
     Route::delete('/products/{id}/images', 'App\Http\Controllers\ImageController@destroy'); // eliminar
+    Route::get('/products/{id}/images/select/{image}', 'App\Http\Controllers\ImageController@select'); // eliminar
 
 });
 
