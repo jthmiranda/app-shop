@@ -20,7 +20,20 @@
                 </div>
             @endif
 
-            You are logged in!
+            <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                <li>
+                    <a href="#dashboard" role="tab" data-toggle="tab">
+                        <i class="material-icons">dashboard</i>
+                        Carrito de compras
+                    </a>
+                </li>
+                <li>
+                    <a href="#tasks" role="tab" data-toggle="tab">
+                        <i class="material-icons">list</i>
+                        Pedidos realizados
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 
