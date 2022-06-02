@@ -16,25 +16,26 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::get('/', 'App\Http\Controllers\TestController@welcome');
+Route::get('/', 'TestController@welcome');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'admin','middleware' => ['auth', 'admin']], function () {
-    // rutas para Productos
-    Route::get('/products', 'App\Http\Controllers\ProductController@index');  // listado
-    Route::get('/products/create', 'App\Http\Controllers\ProductController@create');  //formulario
-    Route::post('/products', 'App\Http\Controllers\ProductController@store');  // registrar
-    Route::get('/products/{id}/edit', 'App\Http\Controllers\ProductController@edit'); // formulario edicion
-    Route::post('/products/{id}/edit', 'App\Http\Controllers\ProductController@update'); // actualizar
-    Route::delete('/products/{id}', 'App\Http\Controllers\ProductController@destroy'); // eliminar
+//Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->group(function () {
+    // rutas para Admin\Productos
+    Route::get('/products', 'ProductController@index');  // listado
+    Route::get('/products/create', 'ProductController@create');  //formulario
+    Route::post('/products', 'ProductController@store');  // registrar
+    Route::get('/products/{id}/edit', 'ProductController@edit'); // formulario edicion
+    Route::post('/products/{id}/edit', 'ProductController@update'); // actualizar
+    Route::delete('/products/{id}', 'ProductController@destroy'); // eliminar
 
-    Route::get('/products/{id}/images', 'App\Http\Controllers\ImageController@index'); //listado
-    Route::post('/products/{id}/images', 'App\Http\Controllers\ImageController@store'); // registrar
-    Route::delete('/products/{id}/images', 'App\Http\Controllers\ImageController@destroy'); // eliminar
-    Route::get('/products/{id}/images/select/{image}', 'App\Http\Controllers\ImageController@select'); // eliminar
+    Route::get('/products/{id}/images', 'ImageController@index'); //listado
+    Route::post('/products/{id}/images', 'ImageController@store'); // registrar
+    Route::delete('/products/{id}/images', 'ImageController@destroy'); // eliminar
+    Route::get('/products/{id}/images/select/{image}', 'ImageController@select'); // eliminar
 
 });
 
