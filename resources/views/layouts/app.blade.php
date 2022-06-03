@@ -19,6 +19,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('css/material-kit.css') }}" rel="stylesheet"/>
 
+    @yield('style')
 </head>
 
 <body class="@yield('body-class')">
