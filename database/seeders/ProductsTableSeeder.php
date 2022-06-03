@@ -22,13 +22,13 @@ class ProductsTableSeeder extends Seeder
         Product::factory(100)->create();
         ProductImage::factory(200)->create();*/
 
-        $categories = Category::factory(5)->create();
+        $categories = Category::factory(4)->create();
         $categories->each(function ($category) {
-           $products =  Product::factory(20)->make();
+           $products =  Product::factory(5)->make();
            $category->products()->saveMany($products);
 
             $products->each(function ($product) {
-              $images =  ProductImage::factory(5)->make();
+              $images =  ProductImage::factory(3)->make();
               $product->images()->saveMany($images);
            });
 
