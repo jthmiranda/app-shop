@@ -16,4 +16,14 @@ class CartDetailController extends Controller
 
          return back();
      }
+
+     public function destroy(Request $request) {
+         $detail = CartDetail::find($request->cart_detail_id);
+
+         if ($detail->cart_id == auth()->user()->cart->id) {
+             $detail->delete();
+         }
+
+         return back();
+     }
 }
