@@ -59,8 +59,11 @@
 
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ url('/home') }}">
+                                {{__('Dashboard')}}
+                            </a>
                             @if (auth()->user()->admin)
-                            <a class="dropdown-item" href="{{ url('/admin/products') }}">
+                            <a  href="{{ url('/admin/products') }}">
                                 {{ __('Gestionar productos') }}
                             </a>
                             @endif
