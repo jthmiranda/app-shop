@@ -51,54 +51,38 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
+                    <li class="dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a>
 
-
-
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('/home') }}">
-                                {{__('Dashboard')}}
-                            </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ url('/home') }}">Dashboard</a>
+                            </li>
                             @if (auth()->user()->admin)
-                            <a  href="{{ url('/admin/products') }}">
-                                {{ __('Gestionar productos') }}
-                            </a>
+                                <li>
+                                    <a href="{{ url('/admin/categories') }}">Gestionar categorías</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/admin/products') }}">Gestionar productos</a>
+                                </li>
                             @endif
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Cerrar Sesion') }}
-                            </a>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    Cerrar sesión
+                                </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-
-
-                        </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
                     </li>
                 @endguest
-{{--                <li>--}}
-{{--                    <a href="https://twitter.com/CreativeTim" target="_blank"--}}
-{{--                       class="btn btn-simple btn-white btn-just-icon">--}}
-{{--                        <i class="fa fa-twitter"></i>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="https://www.facebook.com/CreativeTim" target="_blank"--}}
-{{--                       class="btn btn-simple btn-white btn-just-icon">--}}
-{{--                        <i class="fa fa-facebook-square"></i>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank"--}}
-{{--                       class="btn btn-simple btn-white btn-just-icon">--}}
-{{--                        <i class="fa fa-instagram"></i>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+
             </ul>
         </div>
     </div>
