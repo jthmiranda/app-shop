@@ -43,7 +43,7 @@
                                             @csrf
                                             {{ method_field('DELETE') }}
 
-                                            <a href="#" type="button" rel="tooltip" title="Ver producto"
+                                            <a href="{{ url('/products/'.$product->id) }}" type="button" rel="tooltip" title="Ver producto"
                                                class="btn btn-info btn-simple btn-xs">
                                                 <i class="fa fa-info"></i>
                                             </a>
