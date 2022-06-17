@@ -19,6 +19,53 @@
             display: flex;
             flex-direction: column;
         }
+
+        .tt-query, /* UPDATE: newer versions use tt-input instead of tt-query */
+        .tt-hint {
+            width: 396px;
+            height: 30px;
+            padding: 8px 12px;
+            font-size: 24px;
+            line-height: 30px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .tt-query { /* UPDATE: newer versions use tt-input instead of tt-query */
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        }
+
+        .tt-hint {
+            color: #999;
+        }
+
+        .tt-menu { /* UPDATE: newer versions use tt-menu instead of tt-dropdown-menu */
+            width: 222px;
+            margin-top: 12px;
+            padding: 8px 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0,0,0,.2);
+        }
+
+        .tt-suggestion {
+            padding: 3px 20px;
+            font-size: 18px;
+            line-height: 24px;
+        }
+
+        .tt-suggestion.tt-is-under-cursor { /* UPDATE: newer versions use .tt-suggestion.tt-cursor */
+            color: #fff;
+            background-color: #0097cf;
+
+        }
+
+        .tt-suggestion p {
+            margin: 0;
+        }
     </style>
 @endsection
 
@@ -87,7 +134,7 @@
 
             <form class="form-inline" method="get" action="{{ url('/search') }}">
                 @csrf
-                <input type="text" placeholder="Qué producto buscas?" name="query" class="form-control" />
+                <input id="search" type="text" placeholder="Qué producto buscas?" name="query" class="form-control" />
                 <button class="btn btn-primary btn-just-icon" type="submit">
                     <i class="material-icons">search</i>
                 </button>
@@ -157,4 +204,30 @@
 </div>
 
 @include('includes.footer')
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/typeahead.bundle.min.js') }}"></script>
+    <script>
+        $(function () {
+            // constructs the suggestion engine
+            var products = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                // `states` is an array of state names defined in "The Basics"
+                //local: ['hola', 'prueba1', 'prueba2', 'hola2', 'adcde']
+                prefetch: '{{ url("/products/json") }}'
+            });
+
+            // inicializar sobre el input de busqueda
+            $('#search').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },{
+                name: 'products',
+                source: products
+            });
+        });
+    </script>
 @endsection
