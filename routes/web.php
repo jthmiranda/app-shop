@@ -10,6 +10,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/products/{id}', 'ProductController@show');
 Route::get('/categories/{category}', 'CategoryController@show');
 
+Route::get('/search', 'SearchController@show');
+
 
 Route::post('/cart', 'CartDetailController@store');
 Route::delete('/cart', 'CartDetailController@destroy');
