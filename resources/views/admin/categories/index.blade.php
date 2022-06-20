@@ -24,6 +24,7 @@
                                 <th class="text-center">#</th>
                                 <th>Nombre</th>
                                 <th>Descrición</th>
+                                <th>Imagen</th>
                                 <th class="text-right">Opciones</th>
                             </tr>
                             </thead>
@@ -33,6 +34,9 @@
                                     <td class="text-center">{{ $category->id }}</td>
                                     <td class="col-md-2 text-center">{{ $category->name }}</td>
                                     <td class="col-md-5 text-center">{{ $category->description }}</td>
+                                    <td>
+                                        <img src=" {{ $category->featured_image_url }}" height="50"/>
+                                    </td>
                                     <td class="td-actions text-right">
                                         <form method="POST"
                                               action="{{ url('/admin/categories/'.$category->id) }}">
